@@ -1,38 +1,25 @@
 import React from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { useDispatch} from "react-redux";
 
-import {deleteTodo, updateTodo} from "../redux/modules/todos";
-const Todo = ({ todo})=> {
-  const navigate = useNavigate();
-  
 
-  const dispatch = useDispatch();
+const Todo = ({ todo, onDeleteHandler, onEditHandler })=> {
   return (
     <TodoContainer>
       <div>
-        <h2>{todo.title}</h2>
+        <h2 className="todo-title">{todo.title}</h2>
         <div>{todo.body}</div>
       </div>
       <ButtonSet>
         <DeleteButton
-          onClick={() => {
-          dispatch(deleteTodo(todo.id));
-        }}
+          onClick={() => onDeleteHandler(todo.id)}
         >
           삭제하기
         </DeleteButton>
         <CompleteButton
-          onClick={() => {
-          dispatch(updateTodo(todo.id));
-        }}
+          onClick={() => onEditHandler(todo.id)}
         >
-        {todo.isDone ? "취소" : "완료"}
+          {todo.isDone ? "취소" : "완료"}
         </CompleteButton>
-        <HomeButton onClick={()=>
-          navigate("/detail/"+todo.id)
-        }>상세보기</HomeButton>
       </ButtonSet>
     </TodoContainer>
   );
@@ -74,10 +61,6 @@ const CompleteButton = styled(Button)`
   background-color: #0080ff;
 `;
 
-const HomeButton = styled(Button)`
-  border: 2px solid plum;
-  background-color: plum;
-`;
 
 
 export default Todo;

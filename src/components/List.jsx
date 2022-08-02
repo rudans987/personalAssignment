@@ -1,32 +1,49 @@
-import React from "react";
-import Todo from "./Todo";
 import styled from "styled-components";
-import {useSelector} from "react-redux";
+import React from "react";
+import Todo from "../todo/Todo";
+import "./style.css";
 
-function List() {
+function List({ todos, setTodos }) {
+  const onDeleteHandler = (todoId) => {
+    const newTodos = todos.filter((todo) => {
+      return todo.id !== todoId;
+    });
+    setTodos(newTodos);
+  };
 
-  const todoList = useSelector((state)=> state.todos.list);
+  const onEditHandler = (todoId) => {
+    const newTodos = todos.map((todo) => {
+      return (todo.id === todoId) ? { ...todo, isDone: !todo.isDone } : { ...todo };
+    });
 
+    setTodos(newTodos);
+  };
   return (
     <AllListContainer>
-      <h2>Working.. 🔥</h2>
+      <h2 className="list-title">Working.. 🔥</h2>
       <ListWrap>
-        {todoList.map((todo) => {
+        {todos.map((todo) => {
           return (!todo.isDone) ?
             <Todo
               todo={todo}
               key={todo.id}
+              setTodos={setTodos}
+              onDeleteHandler={onDeleteHandler}
+              onEditHandler={onEditHandler}
             />
             : null;
         })}
       </ListWrap>
-      <h2>Done..! 🎉</h2>
+      <h2 className="list-title">Done..! 🎉</h2>
       <ListWrap>
-        {todoList.map((todo) => {
+        {todos.map((todo) => {
           return (todo.isDone) ?
             <Todo
               todo={todo}
               key={todo.id}
+              setTodos={setTodos}
+              onDeleteHandler={onDeleteHandler}
+              onEditHandler={onEditHandler}
             />
             : null;
         })}
@@ -34,6 +51,7 @@ function List() {
     </AllListContainer>
   );
 }
+
 
 const AllListContainer = styled.div`
   padding: 0 24px;
