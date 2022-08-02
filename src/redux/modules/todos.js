@@ -78,13 +78,10 @@ export default reducer;
 
 
 
-
-
-
-
 // import {createSlice, configureStore} from '@reduxjs/toolkit';
 // const todos = createSlice({
 //   name: 'todos',
+
 //   initialState: {
 //         list: [
 //           {
@@ -102,6 +99,7 @@ export default reducer;
 //         ]
 //       },
 //   reducers: {
+
 //       createTodo: (state, action) => {
 //           state.list.push(action.payload);
 //       },
@@ -124,3 +122,4 @@ export default reducer;
 // export const{createTodo, updateTodo, deleteTodo} = todos.actions;
 
 // export default store;
+
