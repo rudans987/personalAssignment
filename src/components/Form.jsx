@@ -10,9 +10,10 @@ function Form({ setTodos, todos }) {
   };
 
   const [todo, setTodo] = useState(initialState);
+  const [count, setCount] = useState(2)
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
-    setTodo({ ...todo, [name]: value, id: todos.length + 1 });
+    setTodo({ ...todo, [name]: value, id: count });
   };
 
   const onSubmitHandler = (event) => {
