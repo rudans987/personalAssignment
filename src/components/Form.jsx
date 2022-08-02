@@ -19,6 +19,7 @@ function Form({ setTodos, todos }) {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     setTodos([...todos, todo]);
+    setCount(count+1);
     setTodo(initialState);
   };
 

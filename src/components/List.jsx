@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 import Todo from "../todo/Todo";
-import "./style.css";
+
 
 function List({ todos, setTodos }) {
   const onDeleteHandler = (todoId) => {
@@ -23,7 +23,7 @@ function List({ todos, setTodos }) {
       <h2 className="list-title">Working.. 🔥</h2>
       <ListWrap>
         {todos.map((todo) => {
-          return (!todo.isDone) ?
+          return (!todo.isDone)   ?
             <Todo
               todo={todo}
               key={todo.id}
